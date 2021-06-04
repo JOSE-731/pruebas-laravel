@@ -17,6 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Forma de proteger rutas con middleware
 Route::get('user/{name?}', function ($name) {
     return $name;
 })->middleware('auth');
+
+
+//Rutas resource
+ Route::resource('pages', 'PagesController')->names('crud'); 
