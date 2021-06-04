@@ -34,3 +34,24 @@ Route::get('user/{name?}', function ($name) {
  Route::get('formulario2', 'PruebaController@index');
  Route::post('formulario2', 'PruebaController@store')->name('guardar2');
 
+ //Puebas eloquent
+
+ use App\Post;
+ Route::get('eloquent', function () {
+ 
+    //Sirve para mostrar todos los datos
+    // $post = Post::all();
+
+    // foreach($post as $post){
+    //     echo"$post->id $post->titulo  <br> $post->descripcion <br>";
+    // }
+
+    //Mostrará los datos que cumplan esa condicion, y los ordena de mayor a menor
+    $dato = 30;
+    $post = Post::where('id', '<', $dato)->orderBy('id', 'desc')->get();
+
+    foreach($post as $post){
+        echo"$post->id $post->titulo  <br> $post->descripcion <br>";
+    }
+    
+});
