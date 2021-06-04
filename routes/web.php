@@ -25,3 +25,12 @@ Route::get('user/{name?}', function ($name) {
 
 //Rutas resource
  Route::resource('pages', 'PagesController')->names('crud'); 
+
+ //Validar string
+ Route::get('formulario', 'FormController@index');
+ Route::post('formulario', 'FormController@store')->name('guardar');
+
+ //Validar number
+ Route::get('formulario2', 'PruebaController@index');
+ Route::post('formulario2', 'PruebaController@store')->name('guardar2');
+
