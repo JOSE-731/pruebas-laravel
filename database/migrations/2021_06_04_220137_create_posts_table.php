@@ -14,9 +14,13 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id();
+            //Se aumentara solo
+            $table->bigIncrements('id');
+            //Será el campo que se usará en la relacion, se coloca el unsignedInteger para que sea numeros positivos
+            $table->unsignedBigInteger('user_id');
             $table->string('titulo');
             $table->string('descripcion');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -28,6 +32,5 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Post;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +38,7 @@ Route::get('user/{name?}', function ($name) {
 
  //Puebas eloquent
 
- use App\Post;
+
  Route::get('eloquent', function () {
  
     //Sirve para mostrar todos los datos
@@ -53,5 +55,27 @@ Route::get('user/{name?}', function ($name) {
     foreach($post as $post){
         echo"$post->id $post->titulo  <br> $post->descripcion <br>";
     }
+
+
+    //Mostrará los post del usuario numero 4
+    $dato = 4;
+    $post = Post::where('user_id', '=', $dato)->orderBy('id', 'desc')->get();
+
+    foreach($post as $post){
+        echo"$post->id $post->titulo  <br> $post->descripcion <br>";
+    }
     
 });
+
+
+Route::get('usuario', function () {
+
+    $usuario = User::all();
+
+    foreach($usuario as $usuarios){
+        //$usuarios->posts->count() para contar todos los post que van relacionado a ese usuario
+        echo"$usuarios->id $usuarios->name {$usuarios->posts->count()} <br>";
+    }
+    
+});
+
