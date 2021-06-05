@@ -79,3 +79,43 @@ Route::get('usuario', function () {
     
 });
 
+
+Route::get('coleccion', function () {
+
+    $usuario = User::all();
+
+   //todo los usuarios
+   //dd($usuario->all());
+
+   //Comprueba si se tiene un elemento en x posicion, devuelve un true si lo encuentra y un false si no lo encuentra
+   //dd($usuario->contains(5));
+
+   //Muestra un array con todos los elementos menos el que esté en la posicion que se defina
+   //dd($usuario->except([1,2]));
+
+   //Solo el elemento que se defina
+   //dd($usuario->only([1,2]));
+
+   //Buscar por id
+   //dd($usuario->find(2));
+
+   //Buscar los elementos que estan relacionados con el id seleccionado, le pasamos el nombre del modelo que tiene la relacion
+   dd($usuario->load('posts'));
+    
+});
+
+
+Route::get('serializacion', function () {
+
+    $usuario = User::all();
+
+   //Los datos en formato array
+   //dd($usuario->load('posts')->toArray());
+
+   //Los datos en formato json
+   dd($usuario->load('posts')->toJson());
+
+
+    
+});
+
